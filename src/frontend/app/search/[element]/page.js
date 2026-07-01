@@ -1,7 +1,7 @@
 // In page.js for the element detail page
 "use client";
 import { useParams, useSearchParams, useRouter } from "next/navigation";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import { elements } from "@data";
 import { Heading, Paragraph, Subheading } from "@/components/Typography";
 import { ElementsCard } from "@/components/Card";
@@ -9,7 +9,7 @@ import { BorderBox } from "@/components/BorderBox";
 import { PrimaryButton } from "@/components/Button";
 import QuantityInput from "@/components/QuantityInput";
 
-export default function ElementDetailPage() {
+function ElementDetailPageContent() {
   const params = useParams();
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -99,5 +99,13 @@ export default function ElementDetailPage() {
         </BorderBox>
       </div>
     </main>
+  );
+}
+
+export default function ElementDetailPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex flex-col items-center justify-center p-8 text-foreground font-body">Loading...</div>}>
+      <ElementDetailPageContent />
+    </Suspense>
   );
 }

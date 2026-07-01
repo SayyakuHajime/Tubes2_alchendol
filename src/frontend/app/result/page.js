@@ -1,14 +1,14 @@
 "use client"
 import { useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { Heading, Paragraph } from "@/components/Typography";
 import { BorderBox } from "@/components/BorderBox";
 import { PrimaryButton, SecondaryButton } from "@/components/Button";
 import { ResultStatCard } from "@/components/Card";
 import TreeDiagram from "@/components/TreeDiagram";
 
-export default function ResultPage() {
+function ResultPageContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   
@@ -156,7 +156,7 @@ export default function ResultPage() {
     <main className="min-h-screen bg-background flex flex-col items-center p-8 text-foreground font-body">
       <div className="flex flex-col items-center pt-15 gap-15 w-full pb-20">
         <div className="flex flex-col gap-4 items-center">
-          <Heading>Eureka! Here's Your Alchemy Route</Heading>
+          <Heading>Eureka! Here&apos;s Your Alchemy Route</Heading>
           <Paragraph>
             You searched, I conjured, and here it is — your magical recipe revealed!
           </Paragraph>
@@ -208,5 +208,13 @@ export default function ResultPage() {
         </div>
       </div>
     </main>
+  );
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen bg-background flex flex-col items-center justify-center p-8 text-foreground font-body">Loading result...</div>}>
+      <ResultPageContent />
+    </Suspense>
   );
 }
