@@ -1,173 +1,179 @@
-# Tugas Besar 2 IF2211 Strategi Algoritma
+<a id="readme-top"></a>
 
-## Pencarian Recipe pada Little Alchemy 2 dengan Algoritma BFS dan DFS
 
-## 📌 Deskripsi Singkat
 
-Program ini menyelesaikan permasalahan pencarian recipe pada permainan **Little Alchemy 2** menggunakan algoritma **Breadth-First Search (BFS)** dan **Depth-First Search (DFS)**. Pemain dapat mencari recipe untuk membentuk elemen tertentu dari elemen dasar yang tersedia, yaitu **water, fire, earth, air**. Program juga mendukung pencarian banyak recipe (multiple recipes) dengan optimasi multithreading.
+<br/>
 
-Aplikasi berbasis web ini dibangun dengan menggunakan **React.js (Frontend)** dan **Golang (Backend)**, serta memvisualisasikan recipe yang ditemukan dalam bentuk tree. Selain itu, pengguna dapat memilih algoritma pencarian (BFS atau DFS) dan mode pencarian (Single Recipe atau Multiple Recipes) secara langsung melalui antarmuka aplikasi.
+<div align="center">
+  <img src="src/frontend/public/img/alchendol_logo.png" alt="Alchendol Logo" width="120" />
+  <h3 align="center">Alchendol</h3>
+  <p align="center">
+    Pencarian Recipe pada Little Alchemy 2 dengan Algoritma BFS dan DFS<br/>
+    IF2211 — Strategi Algoritma<br/>
+    Institut Teknologi Bandung
+  </p>
+</div>
 
----
+<div align="center">
+<br/>
 
-## 🗂️ Struktur Direktori
+![React.js](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Next.js](https://img.shields.io/badge/Next.js-000000?style=for-the-badge&logo=next.js&logoColor=white)
+![Golang](https://img.shields.io/badge/Go-00ADD8?style=for-the-badge&logo=go&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-```
-Tubes2_alchendol/
-├── doc
-│   └── alchendol.pdf
-├── src
-│   ├── backend
-│   │   ├── api
-│   │   │   └── handler.go
-│   │   ├── data
-│   │   │   └── elements.json
-│   │   ├── models
-│   │   │   └── models.go
-│   │   ├── scrape
-│   │   │   └── scraper.go
-│   │   ├── search
-│   │   │   ├── bidirectional.go
-│   │   │   ├── bidirectional_multiple.go
-│   │   │   ├── bfs.go
-│   │   │   ├── bfs_multiple.go
-│   │   │   ├── dfs.go
-│   │   │   └── dfs_multiple.go
-│   │   ├── Dockerfile
-│   │   ├── go.mod
-│   │   ├── go.sum
-│   │   └── main.go
-│   └── frontend
-│       ├── app
-│       │   ├── components
-│       │   │   ├── BorderBox.js
-│       │   │   ├── Button.js
-│       │   │   ├── Card.js
-│       │   │   ├── Navbar.js
-│       │   │   ├── QuantityInput.js
-│       │   │   ├── SearchBar.js
-│       │   │   ├── Toggle.js
-│       │   │   ├── TreeDiagram.js
-│       │   │   └── Typography.js
-│       │   ├── creator
-│       │   │   └── page.js
-│       │   ├── greets
-│       │   │   └── page.js
-│       │   ├── howtoplay
-│       │   │   └── page.js
-│       │   ├── magicpath
-│       │   │   └── page.js
-│       │   ├── multiplerecipes
-│       │   │   └── page.js
-│       │   ├── overview
-│       │   │   └── page.js
-│       │   ├── result
-│       │   │   └── page.js
-│       │   ├── search
-│       │   │   └── [element]
-│       │   │       └── page.js
-│       │   ├── searching
-│       │   │   └── page.js
-│       │   ├── shortestrecipe
-│       │   │   └── page.js
-│       │   ├── layout.js
-│       │   ├── page.js
-│       │   └── globals.css
-│       ├── data
-│       │   └── data.js
-│       ├── lib
-│       │   └── utils.js
-│       ├── public
-│       │   ├── icons
-│       │   └── img
-│       ├── Dockerfile
-│       ├── node_modules/
-│       ├── .gitignore
-│       ├── eslint.config.mjs
-│       ├── jsconfig.json
-│       ├── next.config.mjs
-│       ├── package-lock.json
-│       ├── package.json
-│       └── postcss.config.mjs
-├── docker-compose.yml
-└── README.md
-```
+</div>
 
 ---
 
-## ⚙️ Cara Menjalankan Program
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Daftar Isi</summary>
+  <ol>
+    <li><a href="#about-the-project">Tentang Aplikasi</a></li>
+    <li><a href="#tech-stack">Tech Stack</a></li>
+    <li><a href="#features">Fitur Aplikasi</a></li>
+    <li><a href="#getting-started">Getting Started</a></li>
+    <li><a href="#screenshots">Screenshot Aplikasi</a></li>
+    <li><a href="#author">Author</a></li>
+  </ol>
+</details>
 
-### 1️⃣ Clone repository:
+---
 
+## Tentang Aplikasi
+
+<a id="about-the-project"></a>
+
+<div align="center">
+  <img src="src/frontend/public/img/meowculus_hi.png" alt="Meowculus" width="150" />
+</div>
+
+Program ini menyelesaikan permasalahan pencarian recipe pada permainan **Little Alchemy 2** menggunakan algoritma **Breadth-First Search (BFS)**, **Depth-First Search (DFS)**, dan **Bidirectional Search**. 
+Pemain dapat mencari recipe untuk membentuk elemen tertentu dari elemen dasar yang tersedia, yaitu **water, fire, earth, air**. Program juga mendukung pencarian banyak recipe (multiple recipes) dengan optimasi multithreading.
+
+Aplikasi berbasis web ini memvisualisasikan recipe yang ditemukan dalam bentuk tree yang interaktif. Selain itu, pengguna dapat memilih algoritma pencarian (BFS, DFS, atau Bidirectional) dan mode pencarian (Single Recipe atau Multiple Recipes) secara langsung melalui antarmuka aplikasi.
+
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
+
+---
+
+## Tech Stack
+
+<a id="tech-stack"></a>
+
+| Kategori | Teknologi |
+|:---|:---|
+| **Frontend** | React.js, Next.js |
+| **Backend** | Golang |
+| **Styling** | Tailwind CSS |
+| **Deployment** | Docker, Docker Compose |
+
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
+
+---
+
+## Fitur Aplikasi
+
+<a id="features"></a>
+
+- **Pilihan Algoritma Pencarian:** BFS, DFS, dan Bidirectional Search.
+- **Single Recipe Search:** Mencari rute terpendek / tercepat untuk membentuk suatu elemen.
+- **Multiple Recipes Search:** Mencari banyak kemungkinan rute resep sekaligus.
+- **Multithreading:** Optimasi pencarian pada mode Multiple Recipes menggunakan goroutines.
+- **Visualisasi Tree Interaktif:** Menampilkan langkah-langkah penciptaan elemen dalam bentuk diagram tree.
+- **Live Update:** Menampilkan proses pencarian secara real-time.
+- **Docker Support:** Kontainerisasi penuh untuk frontend dan backend mempermudah deployment.
+
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
+
+---
+
+## Getting Started
+
+<a id="getting-started"></a>
+
+### 🐳 Cara Menjalankan dengan Docker (Rekomendasi)
+
+Jika Anda tidak ingin menginstal Node.js dan Go secara manual, Anda dapat menjalankan seluruh aplikasi dengan Docker:
+
+1. Pastikan Docker dan Docker Compose sudah terpasang.
+2. Buka terminal di direktori root proyek (`Tubes2_alchendol`).
+3. Jalankan perintah berikut:
+   ```bash
+   docker compose up -d --build
+   ```
+4. Buka [http://localhost:3000](http://localhost:3000) di browser Anda untuk mengakses aplikasi. Backend berjalan di `http://localhost:8080`.
+5. Untuk menghentikan container, jalankan:
+   ```bash
+   docker compose down
+   ```
+
+### ⚙️ Cara Menjalankan Manual
+
+Jika Anda lebih memilih menjalankan secara manual (Development mode):
+
+**1. Jalankan Backend (Golang)**
 ```bash
-git clone https://github.com/adndax/Tubes2_alchendol.git
-```
-
-### 2️⃣ Masuk ke direktori frontend:
-
-```bash
-cd Tubes2_alchendol/src/frontend
-```
-
-### 3️⃣ Install dependencies:
-
-```bash
-npm install
-```
-
-### 4️⃣ Jalankan aplikasi frontend:
-
-```bash
-npm run dev
-```
-
-### 5️⃣ Buka tab terminal baru, lalu masuk ke direktori backend:
-
-```bash
-cd ../backend
-```
-
-### 6️⃣ Jalankan aplikasi backend:
-
-```bash
+cd Tubes2_alchendol/src/backend
 go run main.go
 ```
 
-### 7️⃣ Akses aplikasi di browser:
+**2. Jalankan Frontend (Next.js)**
+Buka tab terminal baru:
+```bash
+cd Tubes2_alchendol/src/frontend
+npm install
+npm run dev
+```
 
-Buka [http://localhost:5173](http://localhost:5173) untuk melihat antarmuka aplikasi.
+**3. Akses Aplikasi**
+Buka [http://localhost:3000](http://localhost:3000) di browser.
 
----
-
-## 📄 Format Input
-
-* Pilihan algoritma (BFS, DFS, dan Bidirectional)
-* Elemen yang ingin dicari
-* Mode pencarian: Single Recipe atau Multiple Recipes
-
----
-
-## 🧾 Format Output
-
-* Visualisasi tree recipe yang ditemukan
-* Waktu pencarian dan jumlah node yang dikunjungi
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
 
 ---
 
-## 📈 Fitur Tambahan
+## Screenshot Aplikasi
 
-* **Multithreading** pada mode pencarian Multiple Recipes
-* **Visualisasi tree** yang interaktif
-* **Live Update** untuk menampilkan proses pencarian secara real-time (bonus)
-* **Bidirectional Search** sebagai opsi algoritma tambahan (bonus)
-* **Docker Support** untuk containerization (bonus)
+<a id="screenshots"></a>
+
+<div align="center">
+
+*Catatan: Letakkan screenshot dengan nama file yang sesuai di dalam folder `screenshots/` agar muncul di bawah ini.*
+
+### Main Pages
+
+| Home / Landing Page | How to Play |
+|:---:|:---:|
+| <img src="screenshots/home.png" height="300" alt="Home Screenshot"/> | <img src="screenshots/howtoplay.png" height="300" alt="How to Play Screenshot"/> |
+
+### Search & Recipes
+
+| Single Recipe Search | Multiple Recipes Search |
+|:---:|:---:|
+| <img src="screenshots/search_single.png" height="300" alt="Single Search Screenshot"/> | <img src="screenshots/search_multiple.png" height="300" alt="Multiple Search Screenshot"/> |
+
+### Result Visualization
+
+| Tree Diagram Result | Statistics |
+|:---:|:---:|
+| <img src="screenshots/result_tree.png" height="300" alt="Tree Result Screenshot"/> | <img src="screenshots/result_stats.png" height="300" alt="Stats Screenshot"/> |
+
+</div>
+
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
 
 ---
 
-## 👤 Author
+## Author
 
-| No | Nama              | NIM      |
-| -- | ----------------- | -------- |
-| 1  | Muhammad Alfansya | 13523005 |
-| 2  | M Hazim R Prajoda | 13523009 |
-| 3  | Adinda Putri | 13523071 |
+<a id="author"></a>
+
+| No | Nama | NIM |
+|:---:|:---|:---|
+| 1 | Muhammad Alfansya | 13523005 |
+| 2 | M Hazim R Prajoda | 13523009 |
+| 3 | Adinda Putri | 13523071 |
+
+<div align="right"><a href="#readme-top">↖ Kembali ke atas</a></div>
